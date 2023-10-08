@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Tudo's World - Blog</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #0fF;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin: auto;
+            width: 80%;
+            border: 1px solid #0fF;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        nav ul li a {
+    color: #FFF;  /* 設定連結顏色為白色 */
+    text-decoration: none;  /* 移除底線 */
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Blog</h1>
+        <div id="blog-posts">
+        </div>
+        <script>
+            const blogPosts = ['post1.md', 'post2.md'];
+            function loadPosts() {
+                const blogContainer = document.getElementById('blog-posts');
+                blogPosts.forEach(post => {
+                    fetch(post)
+                    .then(response => response.text())
+                    .then(text => {
+                        const html = marked(text);
+                        const blogPost = document.createElement('div');
+                        blogPost.className = 'blog-post';
+                        blogPost.innerHTML = html;
+                        blogContainer.appendChild(blogPost);
+                    });
+                });
+            }
+            document.addEventListener("DOMContentLoaded", function() {
+                loadPosts();
+            });
+        </script>
+    </div>
+</body>
+</html>

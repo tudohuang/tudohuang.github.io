@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Tudo's World - Portfolio</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #0fF;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin: auto;
+            width: 80%;
+            border: 1px solid #0fF;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .portfolio-item {
+            border: 1px solid #0fF;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+        }
+        .portfolio-item img {
+            max-width: 100%;
+        }
+        nav ul li a {
+    color: #FFF;  /* 設定連結顏色為白色 */
+    text-decoration: none;  /* 移除底線 */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Portfolio</h1>
+        <div class="portfolio-grid" id="portfolio-grid">
+        </div>
+        <script>
+            const works = [
+                {
+                    title: '作品1',
+                    image: 'https://github.com/your-repo/path/to/work1.jpg',
+                    descriptionFile: 'work1-description.md',
+                    detailPage: 'work1-detail.html'
+                },
+                {
+                    title: '作品2',
+                    image: 'https://github.com/your-repo/path/to/work2.jpg',
+                    descriptionFile: 'work2-description.md',
+                    detailPage: 'work2-detail.html'
+                }
+                // Add more works here
+            ];
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const portfolioGrid = document.getElementById('portfolio-grid');
+
+                works.forEach(work => {
+                    fetch(work.descriptionFile)
+                    .then(response => response.text())
+                    .then(text => {
+                        const portfolioItem = document.createElement('div');
+                        portfolioItem.className = 'portfolio-item';
+
+                        portfolioItem.innerHTML = `
+                            <h2>${work.title}</h2>
+                            <img src="${work.image}" alt="${work.title}">
+                            <p>${text}</p>
+                            <a href="${work.detailPage}">詳細</a>
+                        `;
+
+                        portfolioGrid.appendChild(portfolioItem);
+                    });
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Tudo's World</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #0fF;
+            font-family: 'Courier New', monospace;
+        }
+        #typewriter {
+            text-align: center;
+            margin-top: 20vh;
+            font-size: 32px;
+        }
+        nav ul li a {
+    color: #FFF;  /* 設定連結顏色為白色 */
+    text-decoration: none;  /* 移除底線 */
+}
+    </style>
+</head>
+<body>
+    <span id="typewriter"></span>
+    <script>
+        const text = "WELCOME TO TUDO'S WORLD....";
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(() => {
+                    document.getElementById("typewriter").style.display = 'none';
+                    window.location.href = 'home.html';
+                }, 2000);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            typeWriter();
+        });
+    </script>
+</body>
+</html>
+    
