@@ -1,0 +1,241 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+header .header-container {
+    max-width: 800px;
+    margin: 0;
+    max-width: 100%;
+    height: 400px;
+    text-align: center;
+    background-image: url('https://t4.ftcdn.net/jpg/04/27/86/39/360_F_427863926_mPyhfWhQX8v1JeF8Hj1X1AekchvSGdZt.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
+
+
+header img.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 1rem;
+}
+
+header h1 {
+    margin-top: 1rem;
+}
+
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    max-width: 1000px;
+    background: #fff;
+    margin: 1rem 0;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    border-bottom: 2px solid #333;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+section p, section ul {
+    margin: 1rem 0;
+}
+
+.about, .goals, .certificates, .tools, .statistics, .projects {
+    padding: 2rem;
+}
+
+.certificates-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.certificate-img {
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+.tools .tool-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+#skills-tree {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.skill-branch {
+  text-align: left;
+  flex: 1 0 45%; /* 每行兩個技能分支 */
+  margin: 10px;
+  padding: 20px;
+  background-color: #333;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.skill-branch ul {
+  padding: 0;
+}
+
+.skill-branch li {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.skill-icon {
+  margin: 5px;
+  text-align: center;
+  flex: 1 0 30%;
+}
+
+.skill-icon img {
+  height: 80px;
+  width: auto;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.tools .tool-icons img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.tools .tool-icons img:hover {
+    transform: scale(1.1);
+}
+
+.statistics .stat-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.statistics .stat-images img {
+    width: 100%;
+    max-width: 600px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+/*
+.projects ul {
+    list-style: none;
+    padding: 0;
+}
+
+.projects ul li {
+    margin: 0.5rem 0;
+}
+
+.projects ul li a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.projects ul li a:hover {
+    color: #007BFF;
+}
+    */
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background: #333;
+    color: #fff;
+}
+.project-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.project-item {
+    width: 30%; /* 調整專案區塊的寬度 */
+    margin: 10px;
+    background-color: #0c81ca;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.statistics {
+    max-width: 100%;
+    margin-top: 2rem;
+}
+
+
+.smart-art {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#typing-word {
+    font-weight: bold;
+}
+.art-item {
+  background-color: #0b89be;
+  color: white;
+  margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  position: relative;
+  font-size: 1.2em;
+  border-left: 4px solid #30a9de;
+}
+
+.art-description {
+  display: block;
+  background-color: #333;
+  color: #d4d4d4;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-size: 1.0em;
+}
+
+.art-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+}
