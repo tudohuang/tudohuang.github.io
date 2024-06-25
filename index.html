@@ -3,76 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tudo's Links</title>
+    <title>Tudo Huang's Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style type="text/css">
-        body{
-            background: linear-gradient(to right, #93cb11, #25c6fc);
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        @keyframes floatAnimation {
-            0%, 100% { transform: translateY(5px); }
-            50% { transform: translateY(-5px); }
-        }
-        h1 {
-            text-align: center;
-            color: white;
-            font-size: 24px;
-            animation: floatAnimation 2s ease-in-out infinite;
-        }
-        .container {
-            width: 100%;
-            max-width: 320px;
-        }
-        .button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: linear-gradient(to right, #fe00ad, #a6cb11);
-            padding: 12px 20px;
-            border-radius: 20px; /*靈魂*/
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 10px;
-            box-shadow: 0px 8px 15px rgba(0,0,0,0.1);
-        }
-        .button:hover {
-            background-color: #f2f2f2;
-            transform: translateY(-2px);
-        }
-        .button img {
-            margin-right: 10px;
-            width: 24px;
-            height: 24px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Tudo's Linktree</h1>
-        <a href="https://hackmd.io/@Tudohuang" class="button">
-            <img src="https://avatars.githubusercontent.com/u/13574138?s=200&v=4" alt="HackMD Icon">
-            知識的殿堂HackMD
-        </a>
-        <a href="https://github.com/tudohuang" class="button">
-            <img src="https://tudohuang.github.io/tudoweb/github.svg" alt="GitHub Icon">
-            開源聖地GitHub
-        </a>
-        <a href="https://huggingface.co/Tudohuang" class="button">
-            <img src="https://tudohuang.github.io/tudoweb/hug.svg" alt="HuggingFace Icon">
-            AI之家HuggingFace
-        </a>
-        <a href="https://discord.com" class="button">
-            <img src="https://tudohuang.github.io/tudoweb/dc.svg" alt="Discord Icon">
-            社交網路Discord, ID: tudo
-        </a>
-        <a href="mailto:tudohuang@gmail.com" class="button">
-            ✉️ Email
-        </a>
-    </div>
+    <header>
+        <div class="header-container">
+            <img src="https://avatars.githubusercontent.com/u/88125758?v=4" alt="Profile Picture" class="profile-img">
+            <h1><div id="typing-word"></div></h1>
+            <h3>AI Training and Arduino Project Lover</h3>
+        </div>
+    </header>
+
+    <main>
+        <section class="about">
+            <h2>About Me</h2>
+            <p>I'm a Taiwanese high school student, currently studying in Grade 11.</p>
+        </section>
+
+        <section class="goals">
+            <h2>Recent Goals</h2>
+            <ul>
+                <li>Create projects such as PyTorch AI, Little Game Web</li>
+                <li>Learn more about Python & C++</li>
+            </ul>
+        </section>
+
+
+        <section class="tools">
+            <h2>Interested Languages and Tools</h2>
+            <div class="tool-icons">
+                <a href="https://www.arduino.cc/" target="_blank" rel="noreferrer">
+                    <img src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" alt="Arduino">
+                </a>
+                <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer">
+                    <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="Bash">
+                </a>
+                <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C">
+                </a>
+                <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++">
+                </a>
+
+                <a href="https://www.docker.com/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="Docker">
+                </a>
+                <a href="https://flask.palletsprojects.com/" target="_blank" rel="noreferrer">
+                    <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="Flask">
+                </a>
+                <a href="https://huggingface.co/" target="_blank" rel="noreferrer">
+                    <img src="https://avatars.githubusercontent.com/u/25720743?s=200&v=4" alt="Huggingface">
+                </a>
+                <a href="https://git-scm.com/" target="_blank" rel="noreferrer">
+                    <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git">
+                </a>
+                <a href="https://heroku.com" target="_blank" rel="noreferrer">
+                    <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="Heroku">
+                </a>
+                <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="HTML5">
+                </a>
+                <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="CSS3">
+                </a>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript">
+                </a>
+
+
+                <a href="https://www.linux.org/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux">
+                </a>
+                <a href="https://www.mysql.com/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="MySQL">
+                </a>
+                <a href="https://opencv.org/" target="_blank" rel="noreferrer">
+                    <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="OpenCV">
+                </a>
+                <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg" alt="Pandas">
+                </a>
+                <a href="https://www.python.org" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python">
+                </a>
+                <a href="https://scikit-learn.org/" target="_blank" rel="noreferrer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-Learn">
+                </a>
+                <a href="https://www.tensorflow.org" target="_blank" rel="noreferrer">
+                    <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="TensorFlow">
+                </a>
+                <a href="https://matplotlib.org/" target="_blank" rel="noreferrer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Matplotlib_icon.svg" alt="Matplotlib">
+                </a>
+                <a href="https://numpy.org/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" alt="NumPy">
+                </a>
+                <a href="https://pytorch.org/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg" alt="PyTorch">
+                </a>
+            </div>
+        </section>
+
+        <section class="statistics">
+            <h2>Statistics</h2>
+            <div class="stat-images">
+                <img src="https://github-readme-stats.vercel.app/api?username=tudohuang&show_icons=true&count_private=true&include_all_commits=false&custom_title=GitHub%20Stats" alt="GitHub Stats">
+                <img src="https://github-readme-streak-stats.herokuapp.com/?user=tudohuang" alt="GitHub Streak">
+                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=tudohuang&layout=compact&theme=vision-friendly-dark" alt="Most Used Languages">
+            </div>
+        </section>
+
+
+        <section id="project">
+            <div class="work container">
+             <h2>Project</h2>
+             </div>
+             <div id="skills-tree">
+               
+                <div class="smart-art">
+                 <div class="art-item">
+                   <h3>Phantom Light</h3>
+                   <div style="position: relative; display: inline-block;">
+                     <img src="https://tudohuang.github.io/tudoweb/pht.png" alt="專案 1 圖片" style="width: 250px; height: auto;">
+                     <a href="https://drive.google.com/file/d/1m6RLz-Hdpk-l5yfllj5-pk8Azg8Evwcc/view?usp=sharing" style="position: absolute; top: 10px; right: 10px;">
+                       <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="PDF" style="width: 50px; height: 50px; ">
+                     </a>
+                   </div>
+                   
+                   <p>Based on the CNN model invented by Pytorch, Phantom Light has the ability to track the wand light spot from an infrared camera to achieve AIOT control.</p>
+                   <p><h style="color:#db1515;"># Python</h><h style="color:#10d9e7;"> # PyTorch</h></p>
+               </div>
+                    <div class="art-item">
+                    <h3> Σ Go</h3>
+                    <div style="position: relative; display: inline-block;">
+                     <img src="https://tudohuang.github.io/tudoweb/go.png" alt="專案 1 圖片" style="width: 250px; height: auto;">
+                     <a href="https://drive.google.com/file/d/1fdCBr4Ks9L1TF9-vexsuIlGYRlNUkLsj/view?usp=sharing" style="position: absolute; top: 10px; right: 10px;">
+                       <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="PDF" style="width: 50px; height: 50px; ">
+                     </a>
+                   </div>
+                     
+                        <p>The 9*9 Go robot built on CNN and trained with more than 100,000 pieces of data is currently tied with GNU GO.</p>
+                        <p><h style="color:#db1515;"># CNN</h><h style="color:#10d9e7;"> # AlphaGO</h></p>
+                        
+                        </div>
+                    </div>
+                    <div class="art-item">
+                        MRI Binary Detection(0/1)
+                        <div style="position: relative; display: inline-block;">
+                         <img src="https://tudohuang.github.io/tudoweb/MRI.png" alt="專案 1 圖片" style="width: 250px; height: auto;">
+                         <a href="https://huggingface.co/spaces/Tudohuang/Tumor-classify-system" style="position: absolute; top: 10px; right: 10px;">
+                           <img src="https://tudohuang.github.io/tudoweb/hug.svg" alt="PDF" style="width: 50px; height: 50px; ">
+                         </a>
+                       </div>
+                        <p>MRI classification system Binary classification: Is there cancer or not? Use Gradio to create a web page and use HuggingFace Space to make it public for everyone to use.</p>
+                        <p><h style="color:#db1515;"># PyTorch</h><h style="color:#10d9e7;"> # MRI</h></p>
+                        
+       
+                    </div>
+                    <!-- More projects -->
+                </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Tudo Huang. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
