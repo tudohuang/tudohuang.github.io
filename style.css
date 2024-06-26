@@ -14,9 +14,27 @@ header {
     text-align: center;
 }
 
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #444;
+    padding: 1rem 0;
+}
+
+.navbar a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
 header .header-container {
-    max-width: 800px;
-    margin: 0;
     max-width: 100%;
     height: 400px;
     text-align: center;
@@ -25,7 +43,6 @@ header .header-container {
     background-position: center; 
     background-repeat: no-repeat; 
 }
-
 
 header img.profile-img {
     width: 150px;
@@ -39,17 +56,20 @@ header h1 {
 }
 
 main {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
 
 section {
-    max-width: 1000px;
+    max-width: 1200px;
     background: #fff;
     margin: 1rem 0;
     padding: 2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 section h2 {
@@ -89,43 +109,43 @@ section p, section ul {
 }
 
 #skills-tree {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .skill-branch {
-  text-align: left;
-  flex: 1 0 45%; /* 每行兩個技能分支 */
-  margin: 10px;
-  padding: 20px;
-  background-color: #333;
-  border-radius: 8px;
-  color: #fff;
+    text-align: left;
+    flex: 1 0 45%;
+    margin: 10px;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 8px;
+    color: #fff;
 }
 
 .skill-branch ul {
-  padding: 0;
+    padding: 0;
 }
 
 .skill-branch li {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 10px;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
 }
 
 .skill-icon {
-  margin: 5px;
-  text-align: center;
-  flex: 1 0 30%;
+    margin: 5px;
+    text-align: center;
+    flex: 1 0 30%;
 }
 
 .skill-icon img {
-  height: 80px;
-  width: auto;
-  display: block;
-  margin-bottom: 5px;
+    height: 80px;
+    width: auto;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .tools .tool-icons img {
@@ -140,37 +160,18 @@ section p, section ul {
 
 .statistics .stat-images {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
 }
 
 .statistics .stat-images img {
     width: 100%;
-    max-width: 600px;
+    max-width: 300px;
     border: 2px solid #ddd;
     border-radius: 8px;
 }
-/*
-.projects ul {
-    list-style: none;
-    padding: 0;
-}
-
-.projects ul li {
-    margin: 0.5rem 0;
-}
-
-.projects ul li a {
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.projects ul li a:hover {
-    color: #007BFF;
-}
-    */
 
 footer {
     text-align: center;
@@ -178,64 +179,52 @@ footer {
     background: #333;
     color: #fff;
 }
-.project-container {
+
+.project-grid {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 2rem;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .project-item {
-    width: 30%; /* 調整專案區塊的寬度 */
-    margin: 10px;
-    background-color: #0c81ca;
+    background-color: #9cc2bd;
+    color: white;
     padding: 15px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    width: 30%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.statistics {
-    max-width: 100%;
-    margin-top: 2rem;
+.project-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-
-.smart-art {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-#typing-word {
-    font-weight: bold;
-}
-.art-item {
-  background-color: #0b89be;
-  color: white;
-  margin: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 15px;
-  border-radius: 10px;
-  width: 300px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  position: relative;
-  font-size: 1.2em;
-  border-left: 4px solid #30a9de;
+.project-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
 
-.art-description {
-  display: block;
-  background-color: #333;
-  color: #d4d4d4;
-  padding: 5px;
-  margin-top: 10px;
-  border-radius: 5px;
-  font-size: 1.0em;
+.small-image {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
 }
 
-.art-item img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 10px auto;
+.typing-animation {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+    border-right: 0.15em solid orange;
+    animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
 }
