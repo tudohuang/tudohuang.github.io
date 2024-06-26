@@ -12,20 +12,32 @@
 </head>
 <body>
     <header>
+        <div class="navbar">
+            <a href="#about">About</a>
+            <a href="#goals">Goals</a>
+            <a href="#tools">Tools</a>
+            <a href="#statistics">Statistics</a>
+            <a href="#project">Projects</a>
+        </div>
         <div class="header-container">
             <img src="https://avatars.githubusercontent.com/u/88125758?v=4" alt="Profile Picture" class="profile-img">
-            <h1><div id="typing-word"></div></h1>
+            <h1><span id="typing-word" class="typing-animation"></span></h1>
             <h3>AI Training and Arduino Project Lover</h3>
         </div>
     </header>
 
     <main>
-        <section class="about">
+        <section id="about" class="about section">
             <h2>About Me</h2>
             <p>I'm a Taiwanese high school student, currently studying in Grade 11.</p>
+            <p><img src="https://presskit.hackmd.io/Logo/SVG/HackMD_LOGO_vertical.svg" alt="hackmd" class="small-image">HackMD:<a href="https://hackmd.io/@Tudohuang">https://hackmd.io/@Tudohuang</a></p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Github-desktop-logo-symbol.svg" alt="github" class="small-image">Github:<a href="https://github.com/tudohuang">https://hackmd.io/@Tudohuang</a></p>
+            <p><img src="https://avatars.githubusercontent.com/u/25720743?s=200&v=4"class="small-image"><a href="https://huggingface.co/Tudohuang">HuggingFace:https://huggingface.co/Tudohuang</a></p>
+            <p></p>
+            <p></p>
         </section>
 
-        <section class="goals">
+        <section id="goals" class="goals section">
             <h2>Recent Goals</h2>
             <ul>
                 <li>Create projects such as PyTorch AI, Little Game Web</li>
@@ -34,7 +46,7 @@
         </section>
 
 
-        <section class="tools">
+        <section id="tools" class="tools section">
             <h2>Interested Languages and Tools</h2>
             <div class="tool-icons">
                 <a href="https://www.arduino.cc/" target="_blank" rel="noreferrer">
@@ -109,7 +121,7 @@
             </div>
         </section>
 
-        <section class="statistics">
+        <section id="statistics"class="statistics section">
             <h2>Statistics</h2>
             <div class="stat-images">
                 <img src="https://github-readme-stats.vercel.app/api?username=tudohuang&show_icons=true&count_private=true&include_all_commits=false&custom_title=GitHub%20Stats" alt="GitHub Stats">
@@ -119,59 +131,81 @@
         </section>
 
 
-        <section id="project">
+        <section id="project" class="project section">
             <div class="work container">
-             <h2>Project</h2>
-             </div>
-             <div id="skills-tree">
-               
-                <div class="smart-art">
-                 <div class="art-item">
-                   <h3>Phantom Light</h3>
-                   <div style="position: relative; display: inline-block;">
-                     <img src="https://tudohuang.github.io/tudoweb/pht.png" alt="專案 1 圖片" style="width: 250px; height: auto;">
-                     <a href="https://drive.google.com/file/d/1m6RLz-Hdpk-l5yfllj5-pk8Azg8Evwcc/view?usp=sharing" style="position: absolute; top: 10px; right: 10px;">
-                       <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="PDF" style="width: 50px; height: 50px; ">
-                     </a>
-                   </div>
-                   
-                   <p>Based on the CNN model invented by Pytorch, Phantom Light has the ability to track the wand light spot from an infrared camera to achieve AIOT control.</p>
-                   <p><h style="color:#db1515;"># Python</h><h style="color:#10d9e7;"> # PyTorch</h></p>
-               </div>
-                    <div class="art-item">
-                    <h3> Σ Go</h3>
-                    <div style="position: relative; display: inline-block;">
-                     <img src="https://tudohuang.github.io/tudoweb/go.png" alt="專案 1 圖片" style="width: 250px; height: auto;">
-                     <a href="https://drive.google.com/file/d/1fdCBr4Ks9L1TF9-vexsuIlGYRlNUkLsj/view?usp=sharing" style="position: absolute; top: 10px; right: 10px;">
-                       <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="PDF" style="width: 50px; height: 50px; ">
-                     </a>
-                   </div>
-                     
-                        <p>The 9*9 Go robot built on CNN and trained with more than 100,000 pieces of data is currently tied with GNU GO.</p>
-                        <p><h style="color:#db1515;"># CNN</h><h style="color:#10d9e7;"> # AlphaGO</h></p>
-                        
+                <h2>Project</h2>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <h3>Phantom Light</h3>
+                        <div style="position: relative;">
+                            <img src="https://tudohuang.github.io/tudoweb/pht.png" alt="專案 1 圖片" style="width: 250px; height: auto;">
+                            <a href="https://drive.google.com/file/d/1m6RLz-Hdpk-l5yfllj5-pk8Azg8Evwcc/view?usp=sharing" style="position: absolute; top: 10px; right: 10px;">
+                                <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="PDF" style="width: 50px; height: 50px;">
+                            </a>
                         </div>
+                        <p>Based on the CNN model invented by Pytorch, Phantom Light has the ability to track the wand light spot from an infrared camera to achieve AIOT control.</p>
+                        <p><span style="color:#db1515;"># Python</span> <span style="color:#10d9e7;"># PyTorch</span></p>
                     </div>
-                    <div class="art-item">
-                        MRI Binary Detection(0/1)
-                        <div style="position: relative; display: inline-block;">
-                         <img src="https://tudohuang.github.io/tudoweb/MRI.png" alt="專案 1 圖片" style="width: 250px; height: auto;">
-                         <a href="https://huggingface.co/spaces/Tudohuang/Tumor-classify-system" style="position: absolute; top: 10px; right: 10px;">
-                           <img src="https://tudohuang.github.io/tudoweb/hug.svg" alt="PDF" style="width: 50px; height: 50px; ">
-                         </a>
-                       </div>
+                    <div class="project-item">
+                        <h3>Σ Go</h3>
+                        <div style="position: relative;">
+                            <img src="https://tudohuang.github.io/tudoweb/go.png" alt="專案 2 圖片" style="width: 250px; height: auto;">
+                            <a href="https://drive.google.com/file/d/1fdCBr4Ks9L1TF9-vexsuIlGYRlNUkLsj/view?usp=sharing" style="position: absolute; top: 10px; right: 10px;">
+                                <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="PDF" style="width: 50px; height: 50px;">
+                            </a>
+                        </div>
+                        <p>The 9*9 Go robot built on CNN and trained with more than 100,000 pieces of data is currently tied with GNU GO.</p>
+                        <p><span style="color:#db1515;"># CNN</span> <span style="color:#00eeff;"># AlphaGO</span></p>
+                    </div>
+                    <div class="project-item">
+                        <h3>MRI Binary Detection(0/1)</h3>
+                        <div style="position: relative;">
+                            <img src="https://tudohuang.github.io/tudoweb/MRI.png" alt="專案 3 圖片" style="width: 250px; height: auto;">
+                            <a href="https://huggingface.co/spaces/Tudohuang/Tumor-classify-system" style="position: absolute; top: 10px; right: 10px;">
+                                <img src="https://tudohuang.github.io/tudoweb/hug.svg" alt="PDF" style="width: 50px; height: 50px;">
+                            </a>
+                        </div>
                         <p>MRI classification system Binary classification: Is there cancer or not? Use Gradio to create a web page and use HuggingFace Space to make it public for everyone to use.</p>
-                        <p><h style="color:#db1515;"># PyTorch</h><h style="color:#10d9e7;"> # MRI</h></p>
-                        
-       
+                        <p><span style="color:#db1515;"># PyTorch</span> <span style="color:#00eeff;"># MRI</span></p>
                     </div>
-                    <!-- More projects -->
                 </div>
+            </div>
+        </section>
+        
     </main>
 
     <footer>
         <p>&copy; 2024 Tudo Huang. All rights reserved.</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.section');
+    const windowHeight = window.innerHeight;
+
+    document.addEventListener('scroll', function() {
+        const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+
+            if (sectionTop < scrollPos + windowHeight && sectionTop + sectionHeight > scrollPos) {
+                section.style.opacity = 1;
+                section.style.transform = 'translateY(0)';
+            }
+        });
+    });
+
+    // 初始隱藏 section
+    sections.forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(100px)';
+        section.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+    });
+});
+
+
+    </script>
 </body>
 </html>
