@@ -1,26 +1,34 @@
-var word = "'m Tudo Huang!";
-var typingWord = document.getElementById("typing-word");
-var index = 0;
-var reverse = false;
-function typeWord() {
-    if (index < word.length && !reverse) {
-        typingWord.innerHTML += word.charAt(index);
-        index++;
-        setTimeout(typeWord, 90); // Decreased the timeout for smoother typing
-    } else if (index > 0 && reverse) {
-        typingWord.innerHTML = typingWord.innerHTML.slice(0, -1);
-        index--;
-        setTimeout(typeWord, 90); // Decreased the timeout for smoother backspacing
-    } else {
-        reverse = !reverse;
-        setTimeout(typeWord, 1000);
+document.addEventListener('DOMContentLoaded', function() {
+    const typingWord = document.getElementById("typing-word");
+    typingWord.innerHTML = "I"; 
+    const typingText = "'m Tudo Huang!";
+    let i = 0;
+    let isDeleting = false;
+    const typingSpeed = 100; 
+    const deleteSpeed = 100; 
+    const delay = 10000; 
+
+    function typeWriter() {
+        if (!isDeleting) {
+            if (i < typingText.length) {
+                typingWord.innerHTML += typingText.charAt(i);
+                i++;
+                setTimeout(typeWriter, typingSpeed);
+            } else {
+                isDeleting = true;
+                setTimeout(typeWriter, delay); 
+            }
+        } else {
+            if (i > 0) {
+                typingWord.innerHTML = "I" + typingText.substring(0, i - 1);
+                i--;
+                setTimeout(typeWriter, deleteSpeed);
+            } else {
+                isDeleting = false;
+                setTimeout(typeWriter, typingSpeed);
+            }
+        }
     }
-}
 
-
-window.addEventListener("DOMContentLoaded", function() {
-    typingWord.innerHTML = "I";
-    typeWord();
+    typeWriter();
 });
-
-
