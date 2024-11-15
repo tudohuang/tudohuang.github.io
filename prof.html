@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tudo's Profile</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -20,12 +21,66 @@
             overflow-x: hidden;
         }
 
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #000;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .navbar .menu-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            top: 80px;
+            right: 40px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .menu.active {
+            display: flex;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: #FFD700;
+        }
+
         .profile-section {
             padding: 100px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 50px;
+            margin-top: 80px;
         }
 
         .profile-image {
@@ -84,6 +139,20 @@
 </head>
 
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TudoHuang</div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu" id="menu">
+            <a href="portofolio.html">Portfolio</a>
+            <a href="cert.html">Certificates</a>
+            <a href="prof.html">About Me</a>
+            <a href="index.html">Home</a>
+        </div>
+    </nav>
+
     <!-- Profile Section -->
     <section class="profile-section">
         <img src="https://avatars.githubusercontent.com/u/88125758?s=400&u=827a3610477ee5ad075f73823e50c3d93587adf5&v=4" alt="Profile Image" class="profile-image">
@@ -125,6 +194,12 @@
             delay: 0.5,
             ease: "power4.out"
         });
+
+        // Toggle menu visibility
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
     </script>
 </body>
 
