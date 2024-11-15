@@ -134,14 +134,76 @@
             from { transform: translateY(50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #000;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .navbar .menu-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            top: 80px;
+            right: 40px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .menu.active {
+            display: flex;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: #FFD700;
+        }
     </style>
 </head>
 
 <body>
-    <h1>My Projects</h1>
+    <h1>Projects</h1>
     <div class="project-container">
      
-
+        <nav class="navbar">
+            <div class="logo">TudoHuang</div>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="menu" id="menu">
+                <a href="portofolio.html">Portfolio</a>
+                <a href="cert.html">Certificates</a>
+                <a href="prof.html">About Me</a>
+                <a href="index.html">Home</a>
+            </div>
+        </nav>
 
 
 <!-- Project 15 -->
