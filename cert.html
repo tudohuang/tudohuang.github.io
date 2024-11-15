@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates & Stats & Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1e1e1e;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header {
+            background-color: #222;
+            padding: 20px 40px;
+            text-align: center;
+            font-size: 2rem;
+            color: #FFD700;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin: 30px 0 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .certificates, .research {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .certificate-card, .research-card {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .certificate-card img, .research-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .certificate-card p, .research-card p {
+            margin-top: 10px;
+            color: #ccc;
+        }
+
+        .stats {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .stats .github-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .github-info p {
+            font-size: 1.1rem;
+            color: #FFD700;
+        }
+
+        .github-stats {
+            background-color: #333;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            width: 80%;
+        }
+
+        .github-stats h2 {
+            color: #fff;
+        }
+
+        .github-stats .stat {
+            display: flex;
+            justify-content: space-between;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .github-stats .stat span {
+            font-weight: bold;
+        }
+
+        .github-stats .stat a {
+            text-decoration: none;
+            color: #FFD700;
+        }
+        a {
+    text-decoration: none;
+    color: #d4b814;
+}
+    </style>
+</head>
+<body>
+
+<header>
+    Certificates & GitHub Stats & Research
+</header>
+
+<div class="container">
+
+    <div class="section-title">
+        Certificates
+    </div>
+    
+    <!-- Certificates Section -->
+    <div class="certificates">
+        <!-- Certificate 1 -->
+        <div class="certificate-card">
+            <img src="https://camo.githubusercontent.com/7103dedd86c4f2e7fe0916d1e0e67b31298ea1a79ed8e74f243d854a5f0b6a93/68747470733a2f2f676974726f6c6c2e696f2f6170692f6261646765732f70726f66696c65732f76312f75717766316b7638433673554c6a743948494b63627a385a6d78654432" alt="Certificate 1">
+            <p>GitRoll - Rank A</p>
+        </div>
+
+        <!-- Certificate 2 -->
+        <div class="certificate-card">
+            <img src="https://leetcard.jacoblin.cool/tudohuang?theme=dark&font=Noto%20Sans%20Kaithi" alt="Certificate 2">
+            <p>LeetCode Stats</p>
+        </div>
+
+        <!-- Certificate 3 -->
+        <div class="certificate-card">
+            <img src="https://via.placeholder.com/300x200" alt="Certificate 3">
+            <p>on work</p>
+        </div>
+    </div>
+
+    <div class="section-title">
+        GitHub Stats
+    </div>
+
+    <!-- GitHub Stats Section -->
+    <div class="github-stats">
+        <div class="github-info">
+            <p><strong>GitHub Stats:</strong></p>
+            <div class="stat">
+                <span>Stars: </span><span>17</span>
+            </div>
+            <div class="stat">
+                <span>Commits in 2024: </span><span>404</span>
+            </div>
+            <div class="stat">
+                <span>Pull Requests: </span><span>4</span>
+            </div>
+            <div class="stat">
+                <span>Contributors: </span><span>5</span>
+            </div>
+            <div class="stat">
+                <span>Followers: </span><span>6</span>
+            </div>
+            <a href="https://github.com/tudohuang" class="github-link" target="_blank">View Profile</a>
+        </div>
+    </div>
+
+    <div class="section-title">
+        Research
+    </div>
+
+    <!-- Research Section -->
+    <div class="research">
+        <!-- Research 1 -->
+        <div class="research-card">
+            <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="Research 1" style="width: 150px; height: auto;">
+            <p><a href="https://drive.google.com/file/d/1fdCBr4Ks9L1TF9-vexsuIlGYRlNUkLsj/view?usp=sharing" target="_blank">SigmaGO</a></p>
+        </div>
+
+        <!-- Research 2 -->
+        <div class="research-card">
+            <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="Research 2" style="width: 150px; height: auto;" >
+            <p><a href="https://drive.google.com/file/d/1m6RLz-Hdpk-l5yfllj5-pk8Azg8Evwcc/view" target="_blank">CNN infrared application.</a></p>
+        </div>
+
+        <!-- Research 3 -->
+        <div class="research-card">
+            <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="Research 3" style="width: 150px; height: auto;">
+            <p><a href="https://sciexplore.colife.org.tw/work/2024/C0150/pdf" target="_blank">Yeast-Recording system</a></p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

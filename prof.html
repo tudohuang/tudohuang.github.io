@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tudo's Profile</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #ff004c;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .profile-section {
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .profile-image {
+            width: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-details {
+            text-align: center;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+
+        .profile-details h2 {
+            color: #ff004c;
+            margin-bottom: 20px;
+        }
+
+        .profile-details p {
+            color: #ccc;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: #ff004c;
+            text-decoration: none;
+            font-size: 2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+
+        .social-links i {
+            font-size: 2rem;
+        }
+
+        .social-links img {
+            width: 32px;
+            height: 32px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <img src="https://avatars.githubusercontent.com/u/88125758?s=400&u=827a3610477ee5ad075f73823e50c3d93587adf5&v=4" alt="Profile Image" class="profile-image">
+        <div class="profile-details">
+            <h2>Tudo Huang</h2>
+            <p>
+                Hello, I'm Tudo Huang, a high school engineer dedicated to pushing the boundaries of technology. My expertise lies in <strong>AI, IoT</strong>, and <strong>web development</strong>. I believe technology is not just a tool to solve problems but a means to break conventions and shape the future.
+            </p>
+            <p>
+                My approach is rooted in the belief that the real value of technology lies in continuous innovation and optimization. Moving forward, I aim to focus on deeper integrations of technology to drive more efficient and intelligent solutions.
+            </p>
+            
+            <div class="social-links">
+                <!-- Social Media Icons -->
+                <a href="https://github.com/tudohuang" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://discord.com/users/tudo_huang" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://hackmd.io/@Tudohuang" target="_blank" title="HackMD"><i class="fas fa-file-alt"></i></a>
+                <!-- Hugging Face Icon (using custom image) -->
+                <a href="https://huggingface.co/your-profile" target="_blank" title="Hugging Face">
+                    <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // GSAP Animation for Smooth Transition
+        gsap.from(".profile-image", {
+            opacity: 0,
+            y: -50,
+            duration: 1.5,
+            ease: "power4.out"
+        });
+
+        gsap.from(".profile-details", {
+            opacity: 0,
+            y: 50,
+            duration: 1.5,
+            delay: 0.5,
+            ease: "power4.out"
+        });
+    </script>
+</body>
+
+</html>
