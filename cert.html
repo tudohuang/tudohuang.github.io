@@ -26,6 +26,58 @@
             color: #FFD700;
         }
 
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 40px;
+            background-color: #000;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .navbar .menu-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            top: 80px;
+            right: 40px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+        }
+
+        .menu.active {
+            display: flex;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: #FFD700;
+        }
+
         .section-title {
             font-size: 2.5rem;
             color: #FFD700;
@@ -36,6 +88,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            margin-top: 80px; /* To offset the navbar */
         }
 
         .certificates, .research {
@@ -111,10 +164,12 @@
             text-decoration: none;
             color: #FFD700;
         }
+
         a {
-    text-decoration: none;
-    color: #d4b814;
-}
+            text-decoration: none;
+            color: #d4b814;
+        }
+
     </style>
 </head>
 <body>
@@ -123,8 +178,25 @@
     Certificates & GitHub Stats & Research
 </header>
 
-<div class="container">
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">TudoHuang</div>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="menu" id="menu">
+        <a href="portfolio.html">Portfolio</a>
+        <a href="cert.html">Certificates</a>
+        <a href="prof.html">About Me</a>
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#news-media">News & Media</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
+<!-- Main Content -->
+<div class="container">
     <div class="section-title">
         Certificates
     </div>
@@ -203,6 +275,13 @@
     </div>
 
 </div>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('active');
+    }
+</script>
 
 </body>
 </html>
