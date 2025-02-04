@@ -1,449 +1,537 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tudo's World</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tudo's World - Enhanced</title>
+  
+  <!-- FontAwesome & GSAP -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollTrigger.min.js"></script>
 
-        body {
-            background-color: #000;
-            color: #FFD700;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
+  <style>
+    /* ---------------------------
+       RESET & BASE
+    --------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #000;
+      color: #FFD700;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: #000;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
+    /* ---------------------------
+       NAVBAR
+    --------------------------- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #000;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+    .navbar .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #FFD700;
+    }
+    .navbar .menu-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+    }
+    .menu {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 80px;
+      right: 40px;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .menu.active {
+      display: flex;
+    }
+    .menu a {
+      margin: 10px 0;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+    .menu a:hover {
+      color: #FFD700;
+    }
 
-        .navbar .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #FFD700;
-        }
+    /* ---------------------------
+       HERO SECTION
+    --------------------------- */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+      /* Hero 背景加些微星空效果 */
+      background: radial-gradient(ellipse at bottom, rgba(50,50,50,0.2), transparent),
+                  radial-gradient(ellipse at top, rgba(80,80,80,0.15), transparent 70%);
+    }
+    /* 用 pseudo-element 做更細微的星點 */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: 
+        radial-gradient(#fff 1px, transparent 1px),
+        radial-gradient(#fff 1px, transparent 1px);
+      background-position: 0 0, 25px 25px;
+      background-size: 50px 50px;
+      opacity: 0.04;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-size: 6vw;
+      letter-spacing: 0.1em;
+      opacity: 0; /* 先隱藏，稍後用 GSAP 顯示 */
+      position: relative;
+      z-index: 2; /* 高於 pseudo-element */
+    }
+    .button-container {
+      margin-top: 50px;
+      z-index: 2;
+    }
+    .button {
+      display: inline-block;
+      padding: 15px 40px;
+      border: 2px solid #FFD700;
+      border-radius: 30px;
+      color: #FFD700;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+    .button:hover {
+      background-color: #FFD700;
+      color: #fff;
+      transform: translateY(-5px);
+    }
 
-        .navbar .menu-icon {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #fff;
-        }
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+      cursor: pointer;
+    }
+    .scroll-down span {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      background-color: #FFD700;
+      border-radius: 50%;
+    }
 
-        .menu {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            position: absolute;
-            top: 80px;
-            right: 40px;
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-        }
+    /* ---------------------------
+       NEWS & MEDIA SECTION
+    --------------------------- */
+    .news-media-section {
+      padding: 100px 40px;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .news, .media {
+      flex: 1;
+    }
+    .news h2, .media h2 {
+      color: #fff;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      opacity: 0; /* GSAP fade in */
+    }
+    .news-item, .media-item {
+      margin-bottom: 15px;
+      color: #ccc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    .news-item span, .media-item span {
+      font-size: 0.9rem;
+      color: #FFD700;
+    }
 
-        .menu.active {
-            display: flex;
-        }
+    /* ---------------------------
+       SKILLS SECTION
+    --------------------------- */
+    .skills-section {
+      padding: 80px 40px;
+      background-color: #111;
+      text-align: center;
+    }
+    .skills-section h2 {
+      color: #FFD700;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      opacity: 0;
+    }
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .skills-container a {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      transition: transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(50px) scale(0.9);
+    }
+    .skills-container a.visible:hover {
+      transform: translateY(-10px) scale(1.0);
+    }
 
-        .menu a {
-            text-decoration: none;
-            color: #fff;
-            margin: 10px 0;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
+    .skills-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(17%) sepia(100%) 
+              saturate(3000%) hue-rotate(49deg) brightness(200%) contrast(120%);
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+    .skills-container a:hover img {
+      filter: brightness(1) invert(0);
+      transform: scale(1.1);
+      box-shadow: 0 0 10px 2px #FFD700;
+    }
 
-        .menu a:hover {
-            color: #FFD700;
-        }
+    /* ---------------------------
+       PROJECT SECTION
+    --------------------------- */
+    .project-section {
+      padding: 100px 40px;
+      background-color: #111;
+    }
+    .project-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .project-card {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 15px;
+      width: 300px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+      opacity: 0;               /* GSAP fade in */
+      transform: translateY(40px);
+    }
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.03);
+    }
+    .project-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .project-details {
+      margin-top: 15px;
+    }
+    .project-details h3 {
+      color: #FFD700;
+      font-size: 1.5rem;
+    }
+    .project-details p {
+      color: #ccc;
+    }
 
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 6vw;
-            letter-spacing: 0.1em;
-            animation: fadeIn 2s ease-out forwards;
-        }
-
-        .button-container {
-            margin-top: 50px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 15px 40px;
-            border: 2px solid #FFD700;
-            border-radius: 30px;
-            color: #FFD700;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: background-color 0.3s, color 0.3s, transform 0.3s;
-        }
-
-        .button:hover {
-            background-color: #FFD700;
-            color: #fff;
-            transform: translateY(-5px);
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .scroll-down span {
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 5px;
-            animation: bounce 2s infinite;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            background-color: #FFD700;
-            border-radius: 50%;
-            animation: dotBlink 1.5s infinite alternate;
-        }
-
-        /* News and Media Section */
-        .news-media-section {
-            padding: 100px 40px;
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .news, .media {
-            flex: 1;
-        }
-
-        .news h2, .media h2 {
-            color: #fff;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .news-item, .media-item {
-            margin-bottom: 15px;
-            color: #ccc;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .news-item span, .media-item span {
-            font-size: 0.9rem;
-            color: #FFD700;
-        }
-
-        /* Project Section */
-        .project-section {
-            padding: 100px 40px;
-            background-color: #111;
-        }
-
-        .project-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .project-card {
-            background-color: #222;
-            padding: 20px;
-            border-radius: 15px;
-            width: 300px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-card img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .project-details {
-            margin-top: 15px;
-        }
-
-        .project-details h3 {
-            color: #FFD700;
-            font-size: 1.5rem;
-        }
-
-        .project-details p {
-            color: #ccc;
-        }
-
-        /* Footer */
-        footer {
-            padding: 20px;
-            text-align: center;
-            background-color: #000;
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes dotBlink {
-            from { opacity: 0.5; }
-            to { opacity: 1; }
-        }
-
-        /* Skills Section */
-        .skills-section {
-            padding: 80px 40px;
-            background-color: #111;
-            text-align: center;
-        }
-
-        .skills-section h2 {
-            color: #FFD700;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .skills-container a {
-            display: inline-block;
-            width: 80px;
-            height: 80px;
-            transition: transform 0.3s ease;
-        }
-
-        .skills-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: brightness(0) saturate(100%) invert(17%) sepia(100%) saturate(3000%) hue-rotate(49deg) brightness(200%) contrast(120%);
-            transition: filter 0.3s ease, transform 0.3s ease;
-        }
-
-        .skills-container a:hover img {
-            filter: brightness(1) invert(0);
-            transform: translateY(-10px);
-        }
-
-    </style>
+    /* ---------------------------
+       FOOTER
+    --------------------------- */
+    footer {
+      padding: 20px;
+      text-align: center;
+      background-color: #000;
+      color: #fff;
+      font-size: 1rem;
+    }
+  </style>
 </head>
-
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">TudoHuang</div>
-        <div class="menu-icon" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">TudoHuang</div>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="menu" id="menu">
+      <a href="portofolio.html">Portfolio</a>
+      <a href="cert.html">Certificates</a>
+      <a href="prof.html">About Me</a>
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#news-media">News & Media</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h1>Welcome to Tudo's World</h1>
+    <div class="button-container">
+      <a href="#projects" class="button">Explore More</a>
+    </div>
+    <div class="scroll-down" id="scrollDown">
+      <span>Scroll Down</span>
+      <div class="dot"></div>
+    </div>
+  </section>
+
+  <!-- News & Media Section -->
+  <section class="news-media-section" id="news-media">
+    <div class="news">
+      <h2>News</h2>
+      <div class="news-item">
+        <span>2024.11.12</span>
+        <p>個人新網站正式上線</p>
+      </div>
+      <div class="news-item">
+        <span>2024.11.11</span>
+        <p>重新製作個人網站</p>
+      </div>
+    </div>
+    <!-- 這裡若需要 Media 區域可再新增 .media 區塊 -->
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section">
+    <h2>Skills & Tools</h2>
+    <div class="skills-container">
+      <!-- Hardware -->
+      <a href="https://www.arduino.cc/" target="_blank" rel="noreferrer">
+        <img src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" alt="Arduino">
+      </a>
+      <a href="https://www.raspberrypi.org/" target="_blank" rel="noreferrer">
+        <img src="https://upload.wikimedia.org/wikipedia/de/thumb/c/cb/Raspberry_Pi_Logo.svg/475px-Raspberry_Pi_Logo.svg.png" alt="Raspberry Pi">
+      </a>
+      <a href="https://www.espressif.com/en/products/socs/esp32" target="_blank" rel="noreferrer">
+        <img src="https://www.cdnlogo.com/logos/e/41/espressif-systems.svg" alt="ESP32">
+      </a>
+      <a href="https://kicad.org/" target="_blank" rel="noreferrer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/KiCad-Logo.svg/1280px-KiCad-Logo.svg.png" alt="KiCad">
+      </a>
+
+      <!-- Programming Languages -->
+      <a href="https://www.python.org" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python">
+      </a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript">
+      </a>
+      <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C">
+      </a>
+      <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++">
+      </a>
+
+      <!-- Data Science & Machine Learning -->
+      <a href="https://www.tensorflow.org" target="_blank" rel="noreferrer">
+        <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="TensorFlow">
+      </a>
+      <a href="https://pytorch.org/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg" alt="PyTorch">
+      </a>
+      <a href="https://opencv.org/" target="_blank" rel="noreferrer">
+        <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="OpenCV">
+      </a>
+      <a href="https://scikit-learn.org/" target="_blank" rel="noreferrer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-Learn">
+      </a>
+      <a href="https://numpy.org/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" alt="NumPy">
+      </a>
+      <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" alt="Pandas">
+      </a>
+
+      <!-- DevOps & Cloud -->
+      <a href="https://www.docker.com/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="Docker">
+      </a>
+      <a href="https://heroku.com" target="_blank" rel="noreferrer">
+        <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="Heroku">
+      </a>
+
+      <!-- Version Control & Collaboration -->
+      <a href="https://git-scm.com/" target="_blank" rel="noreferrer">
+        <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git">
+      </a>
+      <a href="https://huggingface.co/" target="_blank" rel="noreferrer">
+        <img src="https://avatars.githubusercontent.com/u/25720743?s=200&v=4" alt="Huggingface">
+      </a>
+
+      <!-- Web Development -->
+      <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="HTML5">
+      </a>
+      <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="CSS3">
+      </a>
+
+      <!-- Operating Systems -->
+      <a href="https://www.linux.org/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux">
+      </a>
+    </div>
+  </section>
+
+  <!-- Project Section -->
+  <section class="project-section" id="projects">
+    <div class="project-container">
+      <div class="project-card">
+        <img src="https://tudohuang.github.io/tudoweb/pht.png" alt="Project 1">
+        <div class="project-details">
+          <h3>PhantomLight</h3>
+          <p>AI-powered infrared tracking system.</p>
         </div>
-        <div class="menu" id="menu">
-            <a href="portofolio.html">Portfolio</a>
-            <a href="cert.html">Certificates</a>
-            <a href="prof.html">About Me</a>
-            <a href="#home">Home</a>
-            <a href="#projects">Projects</a>
-            <a href="#news-media">News & Media</a>
-            <a href="#contact">Contact</a>
+      </div>
+      <div class="project-card">
+        <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/yeas.png?raw=true" alt="Project 2">
+        <div class="project-details">
+          <h3>Yeast Measurement Tool</h3>
+          <p>Precision yeast measurement device.</p>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1>Welcome to Tudo's World</h1>
-        <div class="button-container">
-            <a href="#projects" class="button">Explore More</a>
+      </div>
+      <div class="project-card">
+        <img src="https://github.com/tudohuang/tudoweb/blob/main/go.png?raw=true" alt="Project 3">
+        <div class="project-details">
+          <h3>SigmaGO</h3>
+          <p>AI Go bot based on CNN.</p>
         </div>
-        <div class="scroll-down">
-            <span>Scroll Down</span>
-            <div class="dot"></div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- News & Media Section -->
-    <section class="news-media-section" id="news-media">
-        <div class="news">
-            <h2>News</h2>
-            <div class="news-item">
-                <span>2024.11.12</span>
-                <p>個人新網站正式上線</p>
-            </div>
-            <div class="news-item">
-                <span>2024.11.11</span>
-                <p>重新製作個人網站</p>
-            </div>
-        </div>
-    </section>
+  <!-- Footer -->
+  <footer id="contact">
+    TudoHuang (Taiwan). All rights Reserved.
+  </footer>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills-section">
-        <h2>Skills & Tools</h2>
-        <div class="skills-container">
-            <!-- Hardware -->
-            <a href="https://www.arduino.cc/" target="_blank" rel="noreferrer">
-                <img src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" alt="Arduino">
-            </a>
-            <a href="https://www.raspberrypi.org/" target="_blank" rel="noreferrer">
-                <img src="https://upload.wikimedia.org/wikipedia/de/thumb/c/cb/Raspberry_Pi_Logo.svg/475px-Raspberry_Pi_Logo.svg.png" alt="Raspberry Pi">
-            </a>
-            <a href="https://www.espressif.com/en/products/socs/esp32" target="_blank" rel="noreferrer">
-                <img src="https://www.cdnlogo.com/logos/e/41/espressif-systems.svg" alt="ESP32">
-            </a>
-            <a href="https://kicad.org/" target="_blank" rel="noreferrer">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/KiCad-Logo.svg/1280px-KiCad-Logo.svg.png" alt="KiCad">
-            </a>
+  <!-- Scripts -->
+  <script>
+    // --- 切換選單 (手機版) ---
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('active');
+    }
 
-            <!-- Programming Languages -->
-            <a href="https://www.python.org" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python">
-            </a>
-            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript">
-            </a>
-            <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C">
-            </a>
-            <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++">
-            </a>
+    // --- GSAP 動畫 ---
+    document.addEventListener("DOMContentLoaded", function() {
+      gsap.registerPlugin(ScrollTrigger);
 
-            <!-- Data Science & Machine Learning -->
-            <a href="https://www.tensorflow.org" target="_blank" rel="noreferrer">
-                <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="TensorFlow">
-            </a>
-            <a href="https://pytorch.org/" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg" alt="PyTorch">
-            </a>
-            <a href="https://opencv.org/" target="_blank" rel="noreferrer">
-                <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="OpenCV">
-            </a>
-            <a href="https://scikit-learn.org/" target="_blank" rel="noreferrer">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-Learn">
-            </a>
-            <a href="https://numpy.org/" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" alt="NumPy">
-            </a>
-            <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" alt="Pandas">
-            </a>
+      // 1) Hero 標題淡入
+      gsap.fromTo(".hero h1",
+        { y: -40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.5, ease: "power2.out", delay: 0.5 }
+      );
 
-            <!-- DevOps & Cloud -->
-            <a href="https://www.docker.com/" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="Docker">
-            </a>
-            <a href="https://heroku.com" target="_blank" rel="noreferrer">
-                <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="Heroku">
-            </a>
+      // 2) Scroll Down 按鈕擺動
+      gsap.to("#scrollDown", {
+        y: 15,
+        duration: 1.5,
+        yoyo: true,
+        repeat: -1,
+        ease: "power1.inOut"
+      });
 
-            <!-- Version Control & Collaboration -->
-            <a href="https://git-scm.com/" target="_blank" rel="noreferrer">
-                <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git">
-            </a>
-            <a href="https://huggingface.co/" target="_blank" rel="noreferrer">
-                <img src="https://avatars.githubusercontent.com/u/25720743?s=200&v=4" alt="Huggingface">
-            </a>
+      // 3) News & Media 區塊標題
+      gsap.fromTo(".news h2", 
+        { x: -40, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, scrollTrigger: {
+          trigger: ".news h2",
+          start: "top 80%"
+        }}
+      );
+      // 3-2) News items
+      gsap.utils.toArray(".news-item").forEach((item, i) => {
+        gsap.fromTo(item,
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, delay: i * 0.2, scrollTrigger: {
+            trigger: item,
+            start: "top 90%"
+          }}
+        );
+      });
 
-            <!-- Web Development -->
-            <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="HTML5">
-            </a>
-            <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="CSS3">
-            </a>
+      // 4) Skills 區塊
+      gsap.fromTo(".skills-section h2",
+        { opacity: 0, y: -50 },
+        { opacity: 1, y: 0, duration: 1, scrollTrigger: {
+          trigger: ".skills-section h2",
+          start: "top 85%"
+        }}
+      );
+      // 4-2) 技能圖示
+      gsap.utils.toArray(".skills-container a").forEach((el, i) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 50, scale: 0.9 },
+          {
+            opacity: 1, y: 0, scale: 1, duration: 0.6, delay: i * 0.05, 
+            scrollTrigger: {
+              trigger: el,
+              start: "top 95%"
+            },
+            onComplete() {
+              el.classList.add("visible");
+            }
+          }
+        );
+      });
 
-            <!-- Operating Systems -->
-            <a href="https://www.linux.org/" target="_blank" rel="noreferrer">
-                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux">
-            </a>
-        </div>
-    </section>
-
-
-    <!-- Project Section -->
-    <section class="project-section" id="projects">
-        <div class="project-container">
-            <div class="project-card">
-                <img src="https://tudohuang.github.io/tudoweb/pht.png" alt="Project 1">
-                <div class="project-details">
-                    <h3>PhantomLight</h3>
-                    <p>AI-powered infrared tracking system.</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/yeas.png?raw=true" alt="Project 2">
-                <div class="project-details">
-                    <h3>Yeast Measurement Tool</h3>
-                    <p>Precision yeast measurement device.</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://github.com/tudohuang/tudoweb/blob/main/go.png?raw=true" alt="Project 3">
-                <div class="project-details">
-                    <h3>SigmaGO</h3>
-                    <p>AI Go bot based on CNN.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        TudoHuang (Taiwan). All rights Reserved.
-    </footer>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        }
-    </script>
+      // 5) Projects 區塊
+      gsap.utils.toArray(".project-card").forEach((card, i) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 40 },
+          { 
+            opacity: 1, y: 0, duration: 0.8, delay: i * 0.1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%"
+            }
+          }
+        );
+      });
+    });
+  </script>
 </body>
-
 </html>
