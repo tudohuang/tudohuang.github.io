@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificates & Stats & Research</title>
+    <!-- Font: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Optional: Font Awesome for Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" crossorigin="anonymous"></script>
+    <!-- Optional: GSAP for Animations -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script> -->
+
     <style>
+        /* Global Reset */
         * {
             margin: 0;
             padding: 0;
@@ -13,52 +20,66 @@
         }
 
         body {
-            background-color: #1e1e1e;
+            /* Subtle dark gradient background */
+            background: linear-gradient(135deg, #0e0e0e 0%, #2b2b2b 100%);
             color: #fff;
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
         }
 
+        /* Header */
         header {
-            background-color: #222;
-            padding: 20px 40px;
+            background-color: rgba(0,0,0,0.8);
+            padding: 40px;
             text-align: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #FFD700;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
+        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
-            padding: 10px 40px;
-            background-color: #000;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: rgba(0, 0, 0, 0.9);
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
 
         .navbar .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: #FFD700;
+            text-transform: uppercase;
         }
 
         .navbar .menu-icon {
             font-size: 1.5rem;
             cursor: pointer;
             color: #fff;
+            transition: color 0.3s;
+        }
+
+        .navbar .menu-icon:hover {
+            color: #FFD700;
         }
 
         .menu {
             display: none;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             position: absolute;
-            top: 80px;
+            top: 60px;
             right: 40px;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 8px;
             width: 200px;
         }
 
@@ -70,7 +91,7 @@
             text-decoration: none;
             color: #fff;
             margin: 10px 0;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: color 0.3s;
         }
 
@@ -78,210 +99,300 @@
             color: #FFD700;
         }
 
-        .section-title {
-            font-size: 2.5rem;
-            color: #FFD700;
-            margin: 30px 0 20px;
-        }
-
+        /* Container & Sections */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            margin-top: 80px; /* To offset the navbar */
+            margin-top: 100px; /* Offset for fixed navbar */
         }
 
-        .certificates, .research {
+        .section-title {
+            font-size: 2rem;
+            color: #FFD700;
+            margin: 50px 0 20px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* Certificates, Stats & Research Layouts */
+        .certificates,
+        .research {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            justify-content: space-between;
+            justify-content: center; /* center items for nicer look */
         }
 
-        .certificate-card, .research-card {
+        .certificate-card,
+        .research-card {
             background-color: #333;
             border-radius: 10px;
             padding: 20px;
-            width: 30%;
+            width: 300px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .certificate-card img, .research-card img {
+        .certificate-card:hover,
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+        }
+
+        .certificate-card img,
+        .research-card img {
             max-width: 100%;
             height: auto;
             border-radius: 5px;
             margin-bottom: 10px;
         }
 
-        .certificate-card p, .research-card p {
+        .certificate-card p,
+        .research-card p {
             margin-top: 10px;
             color: #ccc;
         }
 
-        .stats {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 40px;
-        }
-
-        .stats .github-info {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .github-info p {
-            font-size: 1.1rem;
+        .certificate-card a,
+        .research-card a {
             color: #FFD700;
+            text-decoration: none;
         }
 
+        .certificate-card a:hover,
+        .research-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Stats Section */
         .github-stats {
             background-color: #333;
             padding: 20px;
             margin-top: 20px;
             border-radius: 10px;
-            width: 80%;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .github-info {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .github-info p {
+            font-size: 1.2rem;
+            color: #FFD700;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .github-stats h2 {
             color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .github-stats .stat {
+        .stat {
             display: flex;
             justify-content: space-between;
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 10px;
         }
 
-        .github-stats .stat span {
+        .stat span {
             font-weight: bold;
-        }
-
-        .github-stats .stat a {
-            text-decoration: none;
             color: #FFD700;
         }
 
-        a {
-            text-decoration: none;
-            color: #d4b814;
+        .github-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #FFD700;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
         }
 
+        .github-link:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px;
+            }
+            .menu {
+                top: 50px;
+                right: 20px;
+            }
+            .container {
+                margin-top: 80px;
+                padding: 10px;
+            }
+            .certificate-card,
+            .research-card {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    Certificates & GitHub Stats & Research
-</header>
+    <!-- Header -->
+    <header>
+        Certificates & GitHub Stats & Research
+    </header>
 
-<!-- Navbar -->
-<nav class="navbar">
-    <div class="logo">TudoHuang</div>
-    <div class="menu-icon" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-    </div>
-    <div class="menu" id="menu">
-        <a href="portfolio.html">Portfolio</a>
-        <a href="cert.html">Certificates</a>
-        <a href="prof.html">About Me</a>
-        <a href="#home">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#news-media">News & Media</a>
-        <a href="#contact">Contact</a>
-    </div>
-</nav>
-
-<!-- Main Content -->
-<div class="container">
-    <div class="section-title">
-        Certificates
-    </div>
-    
-    <!-- Certificates Section -->
-    <div class="certificates">
-        <!-- Certificate 1 -->
-        <div class="certificate-card">
-            <img src="https://camo.githubusercontent.com/7103dedd86c4f2e7fe0916d1e0e67b31298ea1a79ed8e74f243d854a5f0b6a93/68747470733a2f2f676974726f6c6c2e696f2f6170692f6261646765732f70726f66696c65732f76312f75717766316b7638433673554c6a743948494b63627a385a6d78654432" alt="Certificate 1">
-            <p>GitRoll - Rank A</p>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TudoHuang</div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
         </div>
-
-        <!-- Certificate 2 -->
-        <div class="certificate-card">
-            <img src="https://leetcard.jacoblin.cool/tudohuang?theme=dark&font=Noto%20Sans%20Kaithi" alt="Certificate 2">
-            <p>LeetCode Stats</p>
+        <div class="menu" id="menu">
+            <a href="portfolio.html">Portfolio</a>
+            <a href="cert.html">Certificates</a>
+            <a href="prof.html">About Me</a>
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#news-media">News & Media</a>
+            <a href="#contact">Contact</a>
         </div>
+    </nav>
 
-        <!-- Certificate 3 -->
-        <div class="certificate-card">
-            <img src="https://via.placeholder.com/300x200" alt="Certificate 3">
-            <p>on work</p>
-        </div>
-    </div>
-
-    <div class="section-title">
-        GitHub Stats
-    </div>
-
-    <!-- GitHub Stats Section -->
-    <div class="github-stats">
-        <div class="github-info">
-            <p><strong>GitHub Stats:</strong></p>
-            <div class="stat">
-                <span>Stars: </span><span>17</span>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Certificates Section -->
+        <div class="section-title">Certificates</div>
+        <div class="certificates">
+            <!-- Certificate 1 -->
+            <div class="certificate-card">
+                <img src="https://camo.githubusercontent.com/7103dedd86c4f2e7fe0916d1e0e67b31298ea1a79ed8e74f243d854a5f0b6a93/68747470733a2f2f676974726f6c6c2e696f2f6170692f6261646765732f70726f66696c65732f76312f75717766316b7638433673554c6a743948494b63627a385a6d78654432"
+                     alt="Certificate 1">
+                <p>GitRoll - Rank A</p>
             </div>
-            <div class="stat">
-                <span>Commits in 2024: </span><span>404</span>
+
+            <!-- Certificate 2 -->
+            <div class="certificate-card">
+                <img src="https://leetcard.jacoblin.cool/tudohuang?theme=dark&font=Noto%20Sans%20Kaithi"
+                     alt="Certificate 2">
+                <p>LeetCode Stats</p>
             </div>
-            <div class="stat">
-                <span>Pull Requests: </span><span>4</span>
+
+            <!-- Certificate 3 -->
+            <div class="certificate-card">
+                <img src="https://via.placeholder.com/300x200" alt="Certificate 3">
+                <p>On Work</p>
             </div>
-            <div class="stat">
-                <span>Contributors: </span><span>5</span>
+        </div>
+
+        <!-- GitHub Stats Section -->
+        <div class="section-title">GitHub Stats</div>
+        <div class="github-stats">
+            <div class="github-info">
+                <p>GitHub Highlights:</p>
+                <div class="stat">
+                    <span>Stars:</span>
+                    <span>17</span>
+                </div>
+                <div class="stat">
+                    <span>Commits in 2024:</span>
+                    <span>404</span>
+                </div>
+                <div class="stat">
+                    <span>Pull Requests:</span>
+                    <span>4</span>
+                </div>
+                <div class="stat">
+                    <span>Contributors:</span>
+                    <span>5</span>
+                </div>
+                <div class="stat">
+                    <span>Followers:</span>
+                    <span>6</span>
+                </div>
+                <a href="https://github.com/tudohuang" class="github-link" target="_blank">View Profile</a>
             </div>
-            <div class="stat">
-                <span>Followers: </span><span>6</span>
+        </div>
+
+        <!-- Research Section -->
+        <div class="section-title">Research</div>
+        <div class="research">
+            <!-- Research 1 -->
+            <div class="research-card">
+                <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="Research 1" style="width: 150px; height: auto;">
+                <p>
+                    <a href="https://drive.google.com/file/d/1fdCBr4Ks9L1TF9-vexsuIlGYRlNUkLsj/view?usp=sharing" target="_blank">
+                        SigmaGO
+                    </a>
+                </p>
             </div>
-            <a href="https://github.com/tudohuang" class="github-link" target="_blank">View Profile</a>
+
+            <!-- Research 2 -->
+            <div class="research-card">
+                <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="Research 2" style="width: 150px; height: auto;">
+                <p>
+                    <a href="https://drive.google.com/file/d/1m6RLz-Hdpk-l5yfllj5-pk8Azg8Evwcc/view" target="_blank">
+                        CNN Infrared Application
+                    </a>
+                </p>
+            </div>
+
+            <!-- Research 3 -->
+            <div class="research-card">
+                <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="Research 3" style="width: 150px; height: auto;">
+                <p>
+                    <a href="https://sciexplore.colife.org.tw/work/2024/C0150/pdf" target="_blank">
+                        Yeast-Recording System
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
 
-    <div class="section-title">
-        Research
-    </div>
+    <script>
+        // Toggle Navbar Menu
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
 
-    <!-- Research Section -->
-    <div class="research">
-        <!-- Research 1 -->
-        <div class="research-card">
-            <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="Research 1" style="width: 150px; height: auto;">
-            <p><a href="https://drive.google.com/file/d/1fdCBr4Ks9L1TF9-vexsuIlGYRlNUkLsj/view?usp=sharing" target="_blank">SigmaGO</a></p>
-        </div>
-
-        <!-- Research 2 -->
-        <div class="research-card">
-            <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="Research 2" style="width: 150px; height: auto;" >
-            <p><a href="https://drive.google.com/file/d/1m6RLz-Hdpk-l5yfllj5-pk8Azg8Evwcc/view" target="_blank">CNN infrared application.</a></p>
-        </div>
-
-        <!-- Research 3 -->
-        <div class="research-card">
-            <img src="https://tudohuang.github.io/tudoweb/pdf.svg" alt="Research 3" style="width: 150px; height: auto;">
-            <p><a href="https://sciexplore.colife.org.tw/work/2024/C0150/pdf" target="_blank">Yeast-Recording system</a></p>
-        </div>
-    </div>
-
-</div>
-
-<script>
-    function toggleMenu() {
-        const menu = document.getElementById('menu');
-        menu.classList.toggle('active');
-    }
-</script>
+        /*
+        // Optional GSAP animations:
+        window.addEventListener('load', () => {
+            gsap.from("header", {
+                opacity: 0,
+                y: -50,
+                duration: 1.2,
+                ease: "power4.out"
+            });
+            gsap.from(".certificate-card, .research-card", {
+                opacity: 0,
+                y: 50,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: "power4.out"
+            });
+            gsap.from(".github-stats", {
+                opacity: 0,
+                scale: 0.95,
+                duration: 1.2,
+                delay: 0.5,
+                ease: "power4.out"
+            });
+        });
+        */
+    </script>
 
 </body>
 </html>
