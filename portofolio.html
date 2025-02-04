@@ -1,352 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects Showcase</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects Showcase</title>
+  <!-- 載入 FontAwesome 圖示庫 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        body {
-            background: linear-gradient(135deg, #1f1f1f,#612033 );
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            padding: 100px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  <style>
+    /* ------------------------------
+       全域 (Global) 與重置
+    ------------------------------ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #1f1f1f, #612033);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 100px 20px 150px; /* 下方多留一點空間 */
+    }
 
-        h1 {
-            font-size: 3rem;
-            color: #FFD700;
-            margin-bottom: 50px;
-            text-align: center;
-            animation: fadeIn 1.5s ease-out;
-        }
+    /* ------------------------------
+       Navbar
+    ------------------------------ */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #000;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+    .navbar .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #FFD700;
+    }
+    .navbar .menu-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+    }
+    .menu {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 80px;
+      right: 40px;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .menu.active {
+      display: flex;
+    }
+    .menu a {
+      text-decoration: none;
+      color: #fff;
+      margin: 10px 0;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+    .menu a:hover {
+      color: #FFD700;
+    }
 
-        .project-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
-            width: 100%;
-            max-width: 1200px;
-        }
+    /* ------------------------------
+       標題
+    ------------------------------ */
+    h1 {
+      font-size: 3rem;
+      color: #FFD700;
+      margin-bottom: 50px;
+      text-align: center;
+      animation: fadeIn 1.5s ease-out;
+    }
 
-        .project-card {
-            background-color: #222;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            animation: slideUp 0.8s ease forwards;
-            opacity: 0;
-        }
+    /* ------------------------------
+       Projects 區塊
+    ------------------------------ */
+    .project-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 40px;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .project-card {
+      background-color: #222;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;                 /* 先隱藏 */
+      transform: translateY(50px) scale(0.95); /* 往下 + 微縮 */
+      transition: transform 0.5s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+    }
+    /* 滑入可視範圍後 -> 加上 .visible */
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(255, 0, 76, 0.5);
+    }
+    .project-cover {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .project-details {
+      margin-top: 20px;
+    }
+    .project-details h3 {
+      font-size: 1.7rem;
+      color: #FFD700;
+    }
+    .project-details p {
+      color: #ccc;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+    .github-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .github-info img {
+      width: 24px;
+      height: 24px;
+    }
+    .github-info span {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .github-link {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #FFD700;
+      color: #666363;
+      text-decoration: none;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .github-link:hover {
+      background-color: #ff3264;
+      transform: translateY(-5px);
+    }
+    .tags {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+    }
+    .tag {
+      background-color: #FFD700;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+    }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(255, 0, 76, 0.5);
-        }
-
-        .project-cover {
-            width: 100%;
-            height: 200px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-
-        .project-details {
-            margin-top: 20px;
-        }
-
-        .project-details h3 {
-            font-size: 1.7rem;
-            color: #FFD700;
-        }
-
-        .project-details p {
-            color: #ccc;
-        }
-
-        .github-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .github-info img {
-            width: 24px;
-            height: 24px;
-        }
-
-        .github-info span {
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        .github-link {
-            margin-top: 20px;
-            padding: 12px;
-            background-color: #FFD700;
-            color: #666363;
-            text-decoration: none;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .github-link:hover {
-            background-color: #ff3264;
-            transform: translateY(-5px);
-        }
-
-        .tags {
-            margin-top: 10px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .tag {
-            background-color: #FFD700;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: #000;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        .navbar .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #FFD700;
-        }
-
-        .navbar .menu-icon {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #fff;
-        }
-
-        .menu {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            position: absolute;
-            top: 80px;
-            right: 40px;
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .menu.active {
-            display: flex;
-        }
-
-        .menu a {
-            text-decoration: none;
-            color: #fff;
-            margin: 10px 0;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .menu a:hover {
-            color: #FFD700;
-        }
-    </style>
+    /* ------------------------------
+       Keyframes
+    ------------------------------ */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">TudoHuang</div>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="menu" id="menu">
+      <a href="portofolio.html">Portfolio</a>
+      <a href="cert.html">Certificates</a>
+      <a href="prof.html">About Me</a>
+      <a href="index.html">Home</a>
+    </div>
+  </nav>
 
-                <nav class="navbar">
-            <div class="logo">TudoHuang</div>
-            <div class="menu-icon" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="menu" id="menu">
-                <a href="portofolio.html">Portfolio</a>
-                <a href="cert.html">Certificates</a>
-                <a href="prof.html">About Me</a>
-                <a href="index.html">Home</a>
-            </div>
-        </nav>
-    <h1>Projects</h1>
+  <!-- 頁面標題 -->
+  <h1>Projects</h1>
 
-    <div class="project-container">
-     
-
-
-
-<!-- Project 15 -->
-<div class="project-card">
-    <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/yeas.png?raw=true" alt="Yeast-Recording Cover" class="project-cover">
-    <div class="project-details">
+  <!-- Projects List -->
+  <div class="project-container">
+    <!-- Project 15 -->
+    <div class="project-card">
+      <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/yeas.png?raw=true" alt="Yeast-Recording Cover" class="project-cover">
+      <div class="project-details">
         <h3>Yeast-Recording</h3>
         <p>A project focused on automating the recording of yeast growth for brewing analysis.</p>
         <div class="github-info">
-            <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
-            <span>Python</span>
+          <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+          <span>Python</span>
         </div>
         <a href="https://github.com/tudohuang/Yeast-Recording" class="github-link" target="_blank">View on GitHub</a>
+      </div>
     </div>
-</div>
 
-<!-- Project 16 -->
-<div class="project-card">
-    <img src="https://github.com/tudohuang/tudoweb/blob/main/go.png?raw=true" alt="csvIO Cover" class="project-cover">
-    <div class="project-details">
+    <!-- Project 16 -->
+    <div class="project-card">
+      <img src="https://github.com/tudohuang/tudoweb/blob/main/go.png?raw=true" alt="csvIO Cover" class="project-cover">
+      <div class="project-details">
         <h3>SigmaGO</h3>
         <p>AI go bot based CNN that can beat GNU GO.</p>
         <div class="github-info">
-            <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
-            <span>Python</span>
+          <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+          <span>Python</span>
         </div>
         <a href="https://github.com/tudohuang/sigmago" class="github-link" target="_blank">View on GitHub</a>
+      </div>
     </div>
-</div>
 
-<!-- Project 17 -->
-<div class="project-card">
-    <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/pht.png?raw=true" alt="PhantomLight Cover" class="project-cover">
-    <div class="project-details">
+    <!-- Project 17 -->
+    <div class="project-card">
+      <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/pht.png?raw=true" alt="PhantomLight Cover" class="project-cover">
+      <div class="project-details">
         <h3>PhantomLight</h3>
         <p>Controlling lights and effects using Python CNN.</p>
         <div class="github-info">
-            <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
-            <span>Python</span>
+          <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+          <span>Python</span>
         </div>
         <a href="https://github.com/tudohuang/PhantomLight" class="github-link" target="_blank">View on GitHub</a>
+      </div>
     </div>
-</div>
 
-<!-- Project 1 -->
-<div class="project-card">
-    <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/ascc.png?raw=true0" alt="ASCC Project Cover" class="project-cover">
-    <div class="project-details">
+    <!-- Project 1 -->
+    <div class="project-card">
+      <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/ascc.png?raw=true0" alt="ASCC Project Cover" class="project-cover">
+      <div class="project-details">
         <h3>ASCC</h3>
         <p>A Python project that generates ASCII art animations, showcasing creative visual effects through text-based graphics.</p>
         <div class="github-info">
-            <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
-            <span>Python</span>
+          <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+          <span>Python</span>
         </div>
         <a href="https://github.com/tudohuang/ASCC" class="github-link" target="_blank">View on GitHub</a>
+      </div>
     </div>
-</div>
 
-<!-- Project 2 -->
-<div class="project-card">
-    <img src="https://github.com/tudohuang/Walnut-CLI/raw/main/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202023-08-29%20210126.png" alt="Walnut-CLI Cover" class="project-cover">
-    <div class="project-details">
+    <!-- Project 2 -->
+    <div class="project-card">
+      <img src="https://github.com/tudohuang/Walnut-CLI/raw/main/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202023-08-29%20210126.png" alt="Walnut-CLI Cover" class="project-cover">
+      <div class="project-details">
         <h3>Walnut-CLI</h3>
         <p>A command-line interface inspired by the Walnut console from the anime "Lycoris Recoil," offering features like image conversion, QR code generation, and graph plotting.</p>
         <div class="github-info">
-            <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
-            <span>Python</span>
+          <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+          <span>Python</span>
         </div>
         <a href="https://github.com/tudohuang/Walnut-CLI" class="github-link" target="_blank">View on GitHub</a>
+      </div>
     </div>
-</div>
 
-<!-- Project 3 -->
-<div class="project-card">
-    <img src="https://github.com/AlgoAICITHUB/CITHUB/blob/main/static/cithub.png?raw=true" alt="CITHUB Project Cover" class="project-cover">
-    <div class="project-details">
+    <!-- Project 3 -->
+    <div class="project-card">
+      <img src="https://github.com/AlgoAICITHUB/CITHUB/blob/main/static/cithub.png?raw=true" alt="CITHUB Project Cover" class="project-cover">
+      <div class="project-details">
         <h3>CITHUB</h3>
         <p>A Flask-based web application developed as part of a school project, serving as an academic blog discussion community.</p>
         <div class="github-info">
-            <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
-            <span>Python</span>
+          <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+          <span>Python</span>
         </div>
         <a href="https://github.com/AlgoAICITHUB/CITHUB" class="github-link" target="_blank">View on GitHub</a>
+      </div>
     </div>
-</div>
 
-<!-- Project 4 -->
-<div class="project-card">
-    <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-11-14%20204644.png?raw=true" alt="LatexMathDCbot Cover" class="project-cover">
-    <div class="project-details">
+    <!-- Project 4 -->
+    <div class="project-card">
+      <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-11-14%20204644.png?raw=true" alt="LatexMathDCbot Cover" class="project-cover">
+      <div class="project-details">
         <h3>LatexMathDCbot</h3>
         <p>A Discord bot that converts LaTeX commands into rendered mathematical equations, facilitating easy sharing of complex formulas in chat.</p>
         <div class="github-info">
-            <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
-            <span>Python</span>
+          <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+          <span>Python</span>
         </div>
         <a href="https://github.com/tudohuang/LatexMathDCbot" class="github-link" target="_blank">View on GitHub</a>
+      </div>
     </div>
-</div>
 
-<!-- Project 5 -->
-<div class="project-card">
-    <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/rd.png?raw=true" alt="Radar-Project Cover" class="project-cover">
-    <div class="project-details">
+    <!-- Project 5 -->
+    <div class="project-card">
+      <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/rd.png?raw=true" alt="Radar-Project Cover" class="project-cover">
+      <div class="project-details">
         <h3>Radar-Project</h3>
         <p>A project focused on radar systems, including scripts and data for experiments related to frequency-modulated continuous-wave (FMCW) radar.</p>
         <div class="github-info">
-            <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
-            <span>Python</span>
+          <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+          <span>Python</span>
         </div>
         <a href="https://github.com/tudohuang/Radar-Project" class="github-link" target="_blank">View on GitHub</a>
+      </div>
     </div>
-</div>
 
-<!-- Project 6 -->
-<div class="project-card">
-    <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-11-14%20211437.png?raw=true" alt="Crazy-randomv2 Cover" class="project-cover">
-    <div class="project-details">
+    <!-- Project 6 -->
+    <div class="project-card">
+      <img src="https://github.com/tudohuang/tudohuang.github.io/blob/main/assests/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-11-14%20211437.png?raw=true" alt="Crazy-randomv2 Cover" class="project-cover">
+      <div class="project-details">
         <h3>Crazy-randomv2</h3>
         <p>A Python application built with Tkinter and CustomTkinter libraries, designed to generate a set of random numbers based on user-defined parameters.</p>
         <div class="github-info">
-            <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
-            <span>Python</span>
+          <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+          <span>Python</span>
         </div>
         <a href="https://github.com/tudohuang/Crazy-randomv2" class="github-link" target="_blank">View on GitHub</a>
+      </div>
     </div>
-</div>
+  </div>
 
+  <!-- Scripts -->
+  <script>
+    // 切換選單 (手機版)
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('active');
+    }
 
-        
-        
-        
-        
-        
-    </div>
+    // Intersection Observer: 觀察 .project-card
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll(".project-card");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      cards.forEach(card => observer.observe(card));
+    });
+  </script>
 </body>
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        }
-    </script>
 </html>
