@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tudo's Profile</title>
+    <title>Tudo Huang - Profile</title>
+    <!-- Font Awesome & GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
     <style>
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
@@ -15,9 +17,10 @@
         }
 
         body {
-            background-color: #000;
-            color: #ff004c;
+            /* Gradient background */
+            background: linear-gradient(135deg, #020202 0%, #2b2b2b 100%);
             font-family: 'Poppins', sans-serif;
+            color: #ff004c;
             overflow-x: hidden;
         }
 
@@ -27,35 +30,42 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 40px;
-            background-color: #000;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
 
-        .navbar .logo {
+        .logo {
             font-size: 2rem;
             font-weight: bold;
             color: #FFD700;
+            text-transform: uppercase;
         }
 
-        .navbar .menu-icon {
+        .menu-icon {
             font-size: 1.5rem;
             cursor: pointer;
-            color: #fff;
+            color: #ffffff;
+            transition: color 0.3s;
+        }
+
+        .menu-icon:hover {
+            color: #FFD700;
         }
 
         .menu {
             display: none;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             position: absolute;
-            top: 80px;
+            top: 70px;
             right: 40px;
             background-color: rgba(0, 0, 0, 0.9);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 8px;
         }
 
         .menu.active {
@@ -64,9 +74,9 @@
 
         .menu a {
             text-decoration: none;
-            color: #fff;
+            color: #ffffff;
             margin: 10px 0;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: color 0.3s;
         }
 
@@ -74,38 +84,43 @@
             color: #FFD700;
         }
 
+        /* Profile Section */
         .profile-section {
             padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 50px;
-            margin-top: 80px;
+            gap: 40px;
         }
 
         .profile-image {
-            width: 250px;
+            width: 240px;
+            height: 240px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            border: 3px solid #FFD700;
         }
 
         .profile-details {
             text-align: center;
             max-width: 800px;
-            margin-top: 20px;
         }
 
         .profile-details h2 {
-            color: #ff004c;
+            color: #FFD700;
+            font-size: 2rem;
             margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
         .profile-details p {
-            color: #ccc;
-            font-size: 1.2rem;
+            color: #f2f2f2;
+            font-size: 1.1rem;
             line-height: 1.8;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .social-links {
@@ -123,7 +138,7 @@
         }
 
         .social-links a:hover {
-            color: #fff;
+            color: #FFD700;
         }
 
         .social-links i {
@@ -134,6 +149,27 @@
             width: 32px;
             height: 32px;
             border-radius: 5px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .menu {
+                top: 60px;
+                right: 20px;
+            }
+
+            .profile-section {
+                padding: 80px 20px;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -155,22 +191,30 @@
 
     <!-- Profile Section -->
     <section class="profile-section">
-        <img src="https://avatars.githubusercontent.com/u/88125758?s=400&u=827a3610477ee5ad075f73823e50c3d93587adf5&v=4" alt="Profile Image" class="profile-image">
+        <img src="https://avatars.githubusercontent.com/u/88125758?s=400&u=827a3610477ee5ad075f73823e50c3d93587adf5&v=4"
+            alt="Profile Image" class="profile-image">
         <div class="profile-details">
             <h2>Tudo Huang</h2>
             <p>
-                Hello, I'm Tudo Huang, a high school engineer dedicated to pushing the boundaries of technology. My expertise lies in <strong>AI, IoT</strong>, and <strong>web development</strong>. I believe technology is not just a tool to solve problems but a means to break conventions and shape the future.
+                Hello! I’m Tudo Huang, a passionate engineer dedicated to AI, IoT, and web development.
+                I believe technology is not just about solving problems but also about breaking conventions and shaping the future.
             </p>
             <p>
-                My approach is rooted in the belief that the real value of technology lies in continuous innovation and optimization. Moving forward, I aim to focus on deeper integrations of technology to drive more efficient and intelligent solutions.
+                My approach is rooted in the philosophy that real innovation and continuous optimization drive true technological value.
+                Moving forward, I aim to integrate deeper technology layers for smarter and more efficient solutions.
             </p>
-            
             <div class="social-links">
-                <!-- Social Media Icons -->
-                <a href="https://github.com/tudohuang" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://discord.com/users/tudo_huang" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-                <a href="https://hackmd.io/@Tudohuang" target="_blank" title="HackMD"><i class="fas fa-file-alt"></i></a>
-                <!-- Hugging Face Icon (using custom image) -->
+                <!-- Social Links -->
+                <a href="https://github.com/tudohuang" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://discord.com/users/tudo_huang" target="_blank" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://hackmd.io/@Tudohuang" target="_blank" title="HackMD">
+                    <i class="fas fa-file-alt"></i>
+                </a>
+                <!-- Hugging Face -->
                 <a href="https://huggingface.co/your-profile" target="_blank" title="Hugging Face">
                     <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face">
                 </a>
@@ -179,23 +223,23 @@
     </section>
 
     <script>
-        // GSAP Animation for Smooth Transition
+        // GSAP Animation
         gsap.from(".profile-image", {
             opacity: 0,
             y: -50,
-            duration: 1.5,
+            duration: 1.2,
             ease: "power4.out"
         });
 
         gsap.from(".profile-details", {
             opacity: 0,
             y: 50,
-            duration: 1.5,
-            delay: 0.5,
+            duration: 1.2,
+            delay: 0.4,
             ease: "power4.out"
         });
 
-        // Toggle menu visibility
+        // Toggle Menu
         function toggleMenu() {
             const menu = document.getElementById('menu');
             menu.classList.toggle('active');
